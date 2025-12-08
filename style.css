@@ -1,0 +1,320 @@
+/* Nokia Snake Game Styles */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    /* Prevent pull-to-refresh and overscroll */
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    padding: 20px;
+}
+
+/* Nokia Phone Frame */
+#phone-frame {
+    background: linear-gradient(180deg, #3d5a80 0%, #293241 50%, #1d2d44 100%);
+    border-radius: 40px;
+    padding: 15px;
+    box-shadow: 
+        0 0 0 3px #1d2d44,
+        0 0 0 6px #3d5a80,
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.phone-top {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.speaker {
+    width: 60px;
+    height: 8px;
+    background: linear-gradient(180deg, #1a1a2e, #293241);
+    border-radius: 4px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.phone-brand {
+    text-align: center;
+    color: #98c1d9;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.screen-bezel {
+    background: #1d2d44;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.5),
+        0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#score-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 10px;
+    background-color: #0F380F;
+    color: #9BBC0F;
+    font-size: 10px;
+    border-radius: 4px 4px 0 0;
+}
+
+.sound-btn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 2px 5px;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.sound-btn.muted {
+    opacity: 0.5;
+}
+
+#game-canvas {
+    /* Nokia LCD green background */
+    background-color: #9BBC0F;
+    /* Crisp pixel rendering */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    /* Prevent touch actions on canvas */
+    touch-action: none;
+    display: block;
+}
+
+/* Phone Controls */
+.phone-controls {
+    padding: 15px 10px;
+}
+
+.nav-button-area {
+    display: grid;
+    grid-template-areas: 
+        ". top ."
+        "left center right"
+        ". bottom .";
+    grid-template-columns: 35px 35px 35px;
+    grid-template-rows: 35px 35px 35px;
+    gap: 2px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.nav-btn {
+    background: linear-gradient(180deg, #4a6fa5 0%, #3d5a80 100%);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    transition: transform 0.1s, box-shadow 0.1s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.nav-btn.top { grid-area: top; }
+.nav-btn.left { grid-area: left; }
+.nav-btn.right { grid-area: right; }
+.nav-btn.bottom { grid-area: bottom; }
+
+.nav-center {
+    grid-area: center;
+    background: linear-gradient(180deg, #293241 0%, #1d2d44 100%);
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.side-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.side-btn {
+    width: 50px;
+    height: 25px;
+    background: linear-gradient(180deg, #4a6fa5 0%, #3d5a80 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #98c1d9;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    transition: transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.side-btn:active {
+    transform: scale(0.95);
+}
+
+.keypad {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.key {
+    width: 50px;
+    height: 30px;
+    background: linear-gradient(180deg, #4a6fa5 0%, #3d5a80 100%);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e0fbfc;
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.phone-bottom {
+    height: 20px;
+    border-radius: 0 0 30px 30px;
+}
+
+/* Difficulty Selector */
+#difficulty-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: rgba(61, 90, 128, 0.5);
+    border-radius: 8px;
+    color: #98c1d9;
+    font-size: 10px;
+}
+
+.difficulty-btn {
+    background-color: #1d2d44;
+    color: #9BBC0F;
+    border: 2px solid #9BBC0F;
+    padding: 8px 12px;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 3px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.difficulty-btn:hover {
+    background-color: #306230;
+}
+
+.difficulty-btn.active {
+    background-color: #9BBC0F;
+    color: #0F380F;
+}
+
+#instructions {
+    margin-top: 15px;
+    color: #98c1d9;
+    font-size: 8px;
+    text-align: center;
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    #phone-frame {
+        border-radius: 30px;
+        padding: 10px;
+        transform: scale(0.9);
+        transform-origin: top center;
+    }
+    
+    .phone-brand {
+        font-size: 12px;
+    }
+    
+    #score-display {
+        font-size: 8px;
+    }
+    
+    .nav-button-area {
+        grid-template-columns: 30px 30px 30px;
+        grid-template-rows: 30px 30px 30px;
+    }
+    
+    .key {
+        width: 40px;
+        height: 25px;
+        font-size: 8px;
+    }
+    
+    #difficulty-selector {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .difficulty-btn {
+        padding: 6px 10px;
+        font-size: 7px;
+    }
+    
+    #instructions {
+        font-size: 7px;
+        padding: 0 10px;
+    }
+}
+
+@media (max-height: 700px) {
+    body {
+        padding: 10px;
+    }
+    
+    #phone-frame {
+        transform: scale(0.85);
+        transform-origin: top center;
+    }
+}
