@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Snake Game - Nokia 3310</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="phone-frame">
+        <div class="phone-top">
+            <div class="speaker"></div>
+        </div>
+        <div class="phone-brand">NOKIA</div>
+        <div class="screen-bezel">
+            <div id="game-container">
+                <div id="score-display">
+                    <span>Score: <span id="score">0</span></span>
+                    <button id="sound-toggle" class="sound-btn" title="Toggle Sound">🔊</button>
+                    <span>Best: <span id="high-score">0</span></span>
+                </div>
+                <canvas id="game-canvas"></canvas>
+            </div>
+        </div>
+        <div class="phone-controls">
+            <div class="nav-button-area">
+                <button class="nav-btn top" data-direction="up"></button>
+                <button class="nav-btn left" data-direction="left"></button>
+                <div class="nav-center"></div>
+                <button class="nav-btn right" data-direction="right"></button>
+                <button class="nav-btn bottom" data-direction="down"></button>
+            </div>
+            <div class="side-buttons">
+                <button class="side-btn" id="phone-pause">⏸</button>
+                <button class="side-btn" id="phone-restart">↺</button>
+            </div>
+            <div class="keypad">
+                <div class="key-row">
+                    <div class="key">1</div>
+                    <div class="key">2</div>
+                    <div class="key">3</div>
+                </div>
+                <div class="key-row">
+                    <div class="key">4</div>
+                    <div class="key">5</div>
+                    <div class="key">6</div>
+                </div>
+                <div class="key-row">
+                    <div class="key">7</div>
+                    <div class="key">8</div>
+                    <div class="key">9</div>
+                </div>
+                <div class="key-row">
+                    <div class="key">*</div>
+                    <div class="key">0</div>
+                    <div class="key">#</div>
+                </div>
+            </div>
+        </div>
+        <div class="phone-bottom"></div>
+    </div>
+    
+    <div id="difficulty-selector">
+        <span>Speed:</span>
+        <button class="difficulty-btn" data-speed="slow">Slow</button>
+        <button class="difficulty-btn active" data-speed="normal">Normal</button>
+        <button class="difficulty-btn" data-speed="fast">Fast</button>
+    </div>
+    
+    <div id="instructions">
+        Arrow Keys / Swipe to move • P to pause • M to mute
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
