@@ -64,7 +64,7 @@ let nextDirection = DIRECTIONS.RIGHT;
 let food = null;
 let gameLoop = null;
 let score = 0;
-let highScore = 0;
+let highScore = loadHighScore();
 let isGameOver = false;
 let isPaused = false;
 
@@ -75,6 +75,31 @@ let touchStartY = 0;
 // Audio state
 let audioContext = null;
 let isSoundEnabled = true;
+
+// High score persistence key
+const HIGH_SCORE_KEY = 'snakeHighScore';
+
+// Load high score from localStorage
+function loadHighScore() {
+    try {
+        const saved = localStorage.getItem(HIGH_SCORE_KEY);
+        return saved ? parseInt(saved, 10) : 0;
+    } catch (e) {
+        // localStorage not available (private browsing, etc.)
+        console.warn('Could not load high score:', e);
+        return 0;
+    }
+}
+
+// Save high score to localStorage
+function saveHighScore(score) {
+    try {
+        localStorage.setItem(HIGH_SCORE_KEY, score.toString());
+    } catch (e) {
+        // localStorage not available
+        console.warn('Could not save high score:', e);
+    }
+}
 
 // Initialize Web Audio API
 function initAudio() {
@@ -154,6 +179,7 @@ function updateScoreDisplay() {
     if (score > highScore) {
         highScore = score;
         highScoreElement.textContent = highScore;
+        saveHighScore(highScore);
     }
 }
 
@@ -621,6 +647,10 @@ function setupSoundToggle() {
 function init() {
     // Initialize audio
     initAudio();
+    
+    // Load persisted high score and display it
+    highScore = loadHighScore();
+    highScoreElement.textContent = highScore;
     
     initSnake();
     spawnFood();
